@@ -1,0 +1,36 @@
+.navbar{
+    background-color: gray;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.page-name{
+    display: inline;
+    padding: 1px 5px;
+    color: tomato;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0 10px;
+}
+
+.navLinks a:hover{
+    color: rgba(106, 210, 106, 0.918);
+    font-weight: 600;
+}
+
+.custom-btn{
+    background-color: rgba(97, 184, 97, 0.747);
+    border: none;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.custom-btn:hover{
+    background-color: rgba(106, 210, 106, 0.918);
+}
