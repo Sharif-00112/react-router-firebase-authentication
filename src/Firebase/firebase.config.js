@@ -1,11 +1,10 @@
 const firebaseConfig = {
-  //replace with new data
-    apiKey: "AIzaSyB0jfWldUyraBcLNBTLwUVZLJ3pN7Q4YOc",
-    authDomain: "hello-firebase-49510.firebaseapp.com",
-    projectId: "hello-firebase-49510",
-    storageBucket: "hello-firebase-49510.appspot.com",
-    messagingSenderId: "852363188666",
-    appId: "1:852363188666:web:5227b8760815feea806583"
-  };
+  apiKey: "AIzaSyDmqy5CJNG1kWmFmqqvJA1oMgiNDDYC7do",
+  authDomain: "react-firebase-integrati-7bab8.firebaseapp.com",
+  projectId: "react-firebase-integrati-7bab8",
+  storageBucket: "react-firebase-integrati-7bab8.appspot.com",
+  messagingSenderId: "48322884135",
+  appId: "1:48322884135:web:dfa94a2bfac8ca2c1d9402"
+};
 
   export default firebaseConfig;
