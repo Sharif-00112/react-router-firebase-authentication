@@ -21,7 +21,7 @@ const Header = () => {
                 </button>
 
                 { user?.email && <button onClick={logout} className='btn btn-danger btn-sm m-1'>
-                    <a href="/home">Logout</a>
+                    <a href="/login">Logout</a>
                 </button> }
             </div>
         </div>
