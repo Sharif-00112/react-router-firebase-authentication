@@ -10,12 +10,15 @@ import Contact from '../src/components/Contact/Contact';
 import Login from '../src/components/Login/Login';
 import Register from './components/Register/Register';
 import AuthProvider from './context/AuthProvider';
-import Shipping from './components/Shipping/Shipping';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Orders from './components/Orders/Orders';
+import Checkout from './components/Checkout/Checkout';
 
 
 function App() {
   return (
     <div className="App">
+      
       {/* step-4-context */}
       <AuthProvider>
         <Router>
@@ -27,7 +30,16 @@ function App() {
             <Route exact path = '/contact' element = {<Contact></Contact>}> </Route>
             <Route exact path = '/login' element = {<Login></Login>}> </Route>
             <Route exact path = '/register' element = {<Register></Register>}> </Route>
-            <Route exact path = '/shipping' element = {<Shipping></Shipping>}> </Route>
+            <Route exact path = '/checkout' element = {
+              <PrivateRoute>
+                <Checkout></Checkout>
+              </PrivateRoute>
+            }> </Route>
+            <Route exact path = '/orders' element = {
+              <PrivateRoute>
+                <Orders></Orders>
+              </PrivateRoute>
+            }> </Route>
             <Route exact path = '*' element = {<NotFound></NotFound>}> </Route>
           </Routes>
           <Footer></Footer>

@@ -1,14 +1,12 @@
 import React from 'react';
 
-const Shipping = () => {
+const TraceOrders = () => {
     return (
         <div>
-            <h3 className='pt-5'>Checkout and Shipping</h3> 
+            <h3 className='pt-5'>Trace your order here!</h3> 
             <hr className='w-25 mx-auto'/>
-
-
         </div>
     );
 };
 
-export default Shipping;
+export default TraceOrders;
