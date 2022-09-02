@@ -1,6 +1,6 @@
 import { useState } from "react";
 import initializeAuthentication from '../Firebase/firebase.initialize';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider } from "firebase/auth";
 import { useEffect } from "react";
 
 initializeAuthentication(); 
@@ -8,7 +8,9 @@ initializeAuthentication();
 const useFirebase = () =>{
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
+
     const googleProvider = new GoogleAuthProvider();
+    const gitProvider = new GithubAuthProvider();
     const auth = getAuth();
 
     const signInUsingGoogle = () =>{
@@ -35,6 +37,24 @@ const useFirebase = () =>{
     const signInUsingGithub = () =>{
       console.log('github login coming soon...');
       
+      signInWithPopup(auth, gitProvider)
+      .then((result) => {
+        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+
+        // The signed-in user info.
+        setUser(result.user);
+      }).catch((error) => {
+        // Handle Errors here.
+        setError(error.code);
+        setError(error.message);
+        // The email of the user's account used.
+        setError(error.customData.email);
+        // The AuthCredential type that was used.
+        setError(GithubAuthProvider.credentialFromError(error));
+        // ...
+      });
     };
 
     const signInUsingFacebook = () =>{
