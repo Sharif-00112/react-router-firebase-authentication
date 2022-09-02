@@ -1,6 +1,6 @@
 import { useState } from "react";
 import initializeAuthentication from '../Firebase/firebase.initialize';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider, FacebookAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect } from "react";
 
 initializeAuthentication(); 
@@ -8,6 +8,9 @@ initializeAuthentication();
 const useFirebase = () =>{
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const googleProvider = new GoogleAuthProvider();
     const gitProvider = new GithubAuthProvider();
@@ -34,8 +37,6 @@ const useFirebase = () =>{
     }
 
     const signInUsingGithub = () =>{
-      console.log('github login coming soon...');
-      
       signInWithPopup(auth, gitProvider)
       .then((result) => {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
@@ -56,8 +57,6 @@ const useFirebase = () =>{
     };
 
     const signInUsingFacebook = () =>{
-      console.log('Facebook login coming soon...');
-
       signInWithPopup(auth, facebookProvider)
       .then((result) => {
         // The signed-in user info.
@@ -84,23 +83,76 @@ const useFirebase = () =>{
     };
 
     const customLogin = (email, password) =>{
-      console.log('custom login coming soon...');
-
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        setUser(userCredential.user);
+      })
+      .catch((error) => {
+        setError(error.code);
+        setError(error.message);
+      });
     };
 
     const customRegister = (email, password) =>{
-      console.log('custom register coming soon...');
-
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        // verifyEmail();
+        // setUserName();
+      })
+      .catch((error) => {
+        setError(error.code);
+        setError(error.message);
+        // ..
+      });
     };
 
     const handleLoginSubmitBtn = e =>{
-      console.log('custom register coming soon...');
-
+      e.preventDefault();
+      // console.log(email, password);
+      customLogin(email, password);
     }
 
     const handleRegisterSubmitBtn = e =>{
-      console.log('custom register coming soon...');
+      e.preventDefault();
+      // console.log(email, password);
 
+      if(!/.{8,}/.test(password)){
+        setError('Ensure password is of minimum length 8');
+        return;
+      }
+      if(!/(?=.*[A-Z])/.test(password)){
+        setError('Ensure password has minimum one uppercase letters');
+        return;
+      }
+      if(!/(?=.*[!@#$%^&*()\-__+.])/.test(password)){
+        setError('Ensure password has minimum one special case letter');
+        return;
+      }
+      if(!/(?=.*[0-9])/.test(password)){
+        setError('Ensure password has minimum one digits');
+        return;
+      }
+      if(!/(?=.*[a-z])/.test(password)){
+        setError('Ensure password has minimum one lowercase letters');
+        return;
+      }
+      customRegister(email, password);
+    }
+
+    const handleNameChange = e =>{
+      setName(e.target.value);
+    }
+
+    const handleEmailChange = e =>{
+      setEmail(e.target.value);
+    }
+
+    const handlePasswordChange = e =>{
+      setPassword(e.target.value);
     }
 
     useEffect(()=>{
@@ -136,9 +188,12 @@ const useFirebase = () =>{
       customRegister,
       handleLoginSubmitBtn,
       handleRegisterSubmitBtn,
+      handleNameChange,
+      handleEmailChange,
+      handlePasswordChange,
+      logout,
       user, 
-      error, 
-      logout
+      error
     };
 }
 

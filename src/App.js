@@ -13,6 +13,7 @@ import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Orders from './components/Orders/Orders';
 import Checkout from './components/Checkout/Checkout';
+import CompleteProfile from './components/CompleteProfile/CompleteProfile';
 
 
 function App() {
@@ -38,6 +39,11 @@ function App() {
             <Route exact path = '/orders' element = {
               <PrivateRoute>
                 <Orders></Orders>
+              </PrivateRoute>
+            }> </Route>
+            <Route exact path = '/completeprofile' element = {
+              <PrivateRoute>
+                <CompleteProfile></CompleteProfile>
               </PrivateRoute>
             }> </Route>
             <Route exact path = '*' element = {<NotFound></NotFound>}> </Route>
