@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
     //destructuring hooks
-    const {signInUsingGoogle, signInUsingGithub, signInUsingFacebook, signInUsingTwitter, user} = useAuth();
+    const {signInUsingGoogle, signInUsingGithub, signInUsingFacebook, signInUsingTwitter, user, error} = useAuth();
     
     return (
         <div>
@@ -17,13 +17,22 @@ const Login = () => {
 
             { !user.email ?
                 <div className="">
-                    <form action="">
-                        <input type="email" placeholder='Email'/>
-                        <br />
-                        <input type="password" placeholder='Password'/>
-                        <br />
-                        <input type="submit" value='Login'/>
-                    </form>
+                    <form className='w-75 mx-auto'>
+                        <div className="row mb-3">
+                            <label for="inputEmail3" className="col-sm-2 col-form-label">Email</label>
+                            <div className="col-sm-10">
+                            <input type="email" className="form-control" id="inputEmail3" placeholder='Enter your email' required/>
+                            </div>
+                        </div>
+                        <div className="row mb-3">
+                            <label for="inputPassword3" className="col-sm-2 col-form-label">Password</label>
+                            <div className="col-sm-10">
+                            <input type="password" className="form-control" id="inputPassword3" placeholder='Enter your password' required/>
+                            </div>
+                        </div>
+                        <button type="submit" className="btn btn-secondary">Login</button>
+                        </form>
+
                     
                     <p className='m-4'>Or</p>
 
@@ -36,7 +45,10 @@ const Login = () => {
                     <button onClick={signInUsingTwitter} className='btn btn-info p-2 m-3'>Twitter Login</button>
 
                     <br />
-                    <button className='btn btn-success p-2 m-3'><Link className='text-decoration-none text-white' to="/register">New User? Click to Register!</Link></button>
+                    <h5>{error}</h5>
+                    <br />
+
+                    <button className='btn btn-success p-2 m-3'><Link className='text-decoration-none text-white' to="/register"><u>New User? Click to Register!</u></Link></button>
                 </div>
                 :
                 <div className="mb-5">

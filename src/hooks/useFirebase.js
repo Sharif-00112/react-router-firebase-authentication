@@ -80,7 +80,7 @@ const useFirebase = () =>{
 
     const signInUsingTwitter = () =>{
       console.log('Twitter login coming soon...');
-
+      alert('Twitter Login will be added later...');
     };
 
     const customLogin = (email, password) =>{
