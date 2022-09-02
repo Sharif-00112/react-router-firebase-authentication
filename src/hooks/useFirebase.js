@@ -1,6 +1,6 @@
 import { useState } from "react";
 import initializeAuthentication from '../Firebase/firebase.initialize';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider, FacebookAuthProvider } from "firebase/auth";
 import { useEffect } from "react";
 
 initializeAuthentication(); 
@@ -11,6 +11,7 @@ const useFirebase = () =>{
 
     const googleProvider = new GoogleAuthProvider();
     const gitProvider = new GithubAuthProvider();
+    const facebookProvider = new FacebookAuthProvider();
     const auth = getAuth();
 
     const signInUsingGoogle = () =>{
@@ -21,7 +22,6 @@ const useFirebase = () =>{
             const token = credential.accessToken;
             // The signed-in user info.
             setUser(result.user);
-            // console.log(result.user);
         }).catch((error) => {
             // Handle Errors here.
             setError(error.code);
@@ -30,7 +30,6 @@ const useFirebase = () =>{
             setError(error.customData.email);
             // The AuthCredential type that was used.
             setError(GoogleAuthProvider.credentialFromError(error));
-            // console.log(error);
         });
     }
 
@@ -53,13 +52,30 @@ const useFirebase = () =>{
         setError(error.customData.email);
         // The AuthCredential type that was used.
         setError(GithubAuthProvider.credentialFromError(error));
-        // ...
       });
     };
 
     const signInUsingFacebook = () =>{
       console.log('Facebook login coming soon...');
 
+      signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        // The signed-in user info.
+        setUser(result.user);
+
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        setError(error.code);
+        setError(error.message);
+        // The email of the user's account used.
+        setError(error.customData.email);
+        // The AuthCredential type that was used.
+        setError(FacebookAuthProvider.credentialFromError(error));
+      });
     };
 
     const signInUsingTwitter = () =>{
