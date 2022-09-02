@@ -9,24 +9,30 @@ import About from '../src/components/About/About';
 import Contact from '../src/components/Contact/Contact';
 import Login from '../src/components/Login/Login';
 import Register from './components/Register/Register';
+import AuthProvider from './context/AuthProvider';
+import Shipping from './components/Shipping/Shipping';
 
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Header></Header>
-        <Routes>
-          <Route exact path = '/' element = {<Home></Home>}> </Route>
-          <Route exact path = '/home' element = {<Home></Home>}> </Route>
-          <Route exact path = '/about' element = {<About></About>}> </Route>
-          <Route exact path = '/contact' element = {<Contact></Contact>}> </Route>
-          <Route exact path = '/login' element = {<Login></Login>}> </Route>
-          <Route exact path = '/register' element = {<Register></Register>}> </Route>
-          <Route exact path = '*' element = {<NotFound></NotFound>}> </Route>
-        </Routes>
-        <Footer></Footer>
-      </Router>
+      {/* step-4-context */}
+      <AuthProvider>
+        <Router>
+          <Header></Header>
+          <Routes>
+            <Route exact path = '/' element = {<Home></Home>}> </Route>
+            <Route exact path = '/home' element = {<Home></Home>}> </Route>
+            <Route exact path = '/about' element = {<About></About>}> </Route>
+            <Route exact path = '/contact' element = {<Contact></Contact>}> </Route>
+            <Route exact path = '/login' element = {<Login></Login>}> </Route>
+            <Route exact path = '/register' element = {<Register></Register>}> </Route>
+            <Route exact path = '/shipping' element = {<Shipping></Shipping>}> </Route>
+            <Route exact path = '*' element = {<NotFound></NotFound>}> </Route>
+          </Routes>
+          <Footer></Footer>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }

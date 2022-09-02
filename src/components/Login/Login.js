@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
     //destructuring hooks
-    const {signInUsingGoogle, signInUsingGithub, signInUsingFacebook, signInUsingTwitter, user} = useFirebase();
+    const {signInUsingGoogle, signInUsingGithub, signInUsingFacebook, signInUsingTwitter, user} = useAuth();
     
     return (
         <div>

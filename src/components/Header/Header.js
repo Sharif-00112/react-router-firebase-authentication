@@ -1,10 +1,10 @@
 import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => { 
-    const{user, logout} = useFirebase();
+    const{user, logout} = useAuth();
     return (
         <div className='navbar'>
             <div className="" id='page-name'>
@@ -12,6 +12,7 @@ const Header = () => {
             </div>
             <div className="navLinks">
                 <Link to="/home">Home</Link>
+                <Link to="/shipping">Shipping</Link>
                 <Link to="/about">About</Link>
                 <Link to="/contact">Contact</Link>
             </div>
