@@ -163,7 +163,7 @@ const useFirebase = () =>{
       });
     }
 
-    const handleChangePassword = (getASecureRandomPassword) =>{
+    const handleChangePassword = () =>{
       const user = auth.currentUser;
       const newPassword = password;
       updatePassword(user, newPassword).then(() => {

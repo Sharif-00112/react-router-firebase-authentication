@@ -23,13 +23,13 @@ const Login = () => {
                         <div className="row mb-3">
                             <label for="inputEmail3" className="col-sm-2 col-form-label">Email</label>
                             <div className="col-sm-10">
-                            <input onBlur={handleEmailChange}  type="email" className="form-control" id="inputEmail3" placeholder='Enter your email' required/>
+                            <input onChange={handleEmailChange}  type="email" className="form-control" id="inputEmail3" placeholder='Enter your email' required/>
                             </div>
                         </div>
                         <div className="row mb-3">
                             <label for="inputPassword3" className="col-sm-2 col-form-label">Password</label>
                             <div className="col-sm-10">
-                            <input onBlur={handlePasswordChange} type="password" className="form-control" id="inputPassword3" placeholder='Enter your password' required/>
+                            <input onChange={handlePasswordChange} type="password" className="form-control" id="inputPassword3" placeholder='Enter your password' required/>
                             </div>
 
                             <br />
