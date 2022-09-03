@@ -1,6 +1,6 @@
 import { useState } from "react";
 import initializeAuthentication from '../Firebase/firebase.initialize';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider, FacebookAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider, FacebookAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useEffect } from "react";
 
 initializeAuthentication(); 
@@ -16,7 +16,7 @@ const useFirebase = () =>{
     const gitProvider = new GithubAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
     const auth = getAuth();
-
+ 
     const signInUsingGoogle = () =>{
         signInWithPopup(auth, googleProvider)
         .then((result) => {
@@ -155,6 +155,17 @@ const useFirebase = () =>{
       setPassword(e.target.value);
     }
 
+    const handleForgotPassword = () =>{
+      sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+      })
+      .catch((error) => {
+        setError(error.code);
+        setError(error.message);
+      });
+    }
+
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -191,6 +202,7 @@ const useFirebase = () =>{
       handleNameChange,
       handleEmailChange,
       handlePasswordChange,
+      handleForgotPassword,
       logout,
       user, 
       error

@@ -36,7 +36,8 @@ const Login = () => {
                             <p className='text-danger'>{error}</p>
                         </div>
                         <button type="submit" className="btn btn-secondary">Login</button>
-                        </form>
+                    </form>
+                    <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/forgotpassword"><u>Forgot Password?</u></Link></button>
 
                     
                     <p className='m-4'>Or</p>
@@ -51,7 +52,7 @@ const Login = () => {
 
                     <br />
                     <h5>{error}</h5>
-                    <br />
+                    <br /> 
 
                     <button className='btn btn-success p-2 m-3'><Link className='text-decoration-none text-white' to="/register"><u>New User? Click to Register!</u></Link></button>
                 </div>
@@ -59,7 +60,7 @@ const Login = () => {
                 <div className="mb-5">
                     <p>Email: {user.email}</p>
                     <img src={user.photoURL} alt="" />
-
+                    <br />
                     <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/completeprofile"><u>Complete Profile</u></Link></button>
                 </div>
             }

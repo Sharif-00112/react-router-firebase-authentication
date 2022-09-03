@@ -14,6 +14,8 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Orders from './components/Orders/Orders';
 import Checkout from './components/Checkout/Checkout';
 import CompleteProfile from './components/CompleteProfile/CompleteProfile';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import ChangePassword from './components/ChangePassword/ChangePassword';
 
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
             <Route exact path = '/contact' element = {<Contact></Contact>}> </Route>
             <Route exact path = '/login' element = {<Login></Login>}> </Route>
             <Route exact path = '/register' element = {<Register></Register>}> </Route>
+            <Route exact path = '/forgotpassword' element = {<ForgotPassword></ForgotPassword>}> </Route>
             <Route exact path = '/checkout' element = {
               <PrivateRoute>
                 <Checkout></Checkout>
@@ -44,6 +47,11 @@ function App() {
             <Route exact path = '/completeprofile' element = {
               <PrivateRoute>
                 <CompleteProfile></CompleteProfile>
+              </PrivateRoute>
+            }> </Route>
+            <Route exact path = '/changepassword' element = {
+              <PrivateRoute>
+                <ChangePassword></ChangePassword>
               </PrivateRoute>
             }> </Route>
             <Route exact path = '*' element = {<NotFound></NotFound>}> </Route>
