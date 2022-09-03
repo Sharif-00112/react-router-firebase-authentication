@@ -2,7 +2,7 @@ import React from 'react';
 import useAuth from '../../hooks/useAuth';
 
 const UpdateName = () => {
-    const {error, handleNameChange} = useAuth();
+    const {error, setUserName, handleNameChange} = useAuth();
 
     return (
         <div>
@@ -11,7 +11,7 @@ const UpdateName = () => {
 
             <br />
 
-            <form className='w-75 mx-auto'>
+            <form className='w-75 mx-auto' onSubmit={setUserName}>
                 <div className="row mb-3">
                     <label for="inputName" className="col-sm-2 col-form-label">New Password</label>
                     <div className="col-sm-10">
