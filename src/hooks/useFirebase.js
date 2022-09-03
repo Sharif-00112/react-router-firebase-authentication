@@ -1,6 +1,6 @@
 import { useState } from "react";
 import initializeAuthentication from '../Firebase/firebase.initialize';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider, FacebookAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updatePassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider, FacebookAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updatePassword, sendEmailVerification, updateProfile, } from "firebase/auth";
 import { useEffect } from "react";
 
 initializeAuthentication(); 
@@ -168,7 +168,7 @@ const useFirebase = () =>{
 
     const handleChangePassword = (getASecureRandomPassword) =>{
       const user = auth.currentUser;
-      const newPassword = getASecureRandomPassword();
+      const newPassword = password;
       updatePassword(user, newPassword).then(() => {
         // Update successful.
       }).catch((error) => {
@@ -177,7 +177,18 @@ const useFirebase = () =>{
       });
     }
 
-    
+    const setUserName = () =>{
+      updateProfile(auth.currentUser, {
+        displayName: name
+      }).then(() => {
+        // Profile updated!
+        // ...
+      }).catch((error) => {
+        setError(error.code);
+        setError(error.message);
+      });
+    }
+
   const verifyEmail = () =>{
     sendEmailVerification(auth.currentUser)
     .then(() => {
@@ -228,6 +239,7 @@ const useFirebase = () =>{
       handleForgotPassword,
       handleChangePassword,
       verifyEmail,
+      setUserName,
       logout,
       user, 
       error

@@ -2,14 +2,14 @@ import React from 'react';
 import useAuth from '../../hooks/useAuth';
 
 const ChangePassword = () => {
-    const {error, handlePasswordChange} = useAuth();
+    const {error, handleChangePassword, handlePasswordChange} = useAuth();
 
     return (
         <div>
-            <h3 className='pt-5'>Password Change</h3> 
+            <h3 className='pt-5'>Change Password</h3> 
             <hr className='w-25 mx-auto'/>
 
-            <form className='w-75 mx-auto'>
+            <form className='w-75 mx-auto' onSubmit={handleChangePassword}>
                 <div className="row mb-3">
                     <label for="inputPassword3" className="col-sm-2 col-form-label">New Password</label>
                     <div className="col-sm-10">
