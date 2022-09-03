@@ -16,6 +16,7 @@ import Checkout from './components/Checkout/Checkout';
 import CompleteProfile from './components/CompleteProfile/CompleteProfile';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import ChangePassword from './components/ChangePassword/ChangePassword';
+import UpdateName from './components/UpdateName/UpdateName';
 
 
 function App() {
@@ -52,6 +53,11 @@ function App() {
             <Route exact path = '/changepassword' element = {
               <PrivateRoute>
                 <ChangePassword></ChangePassword>
+              </PrivateRoute>
+            }> </Route>
+            <Route exact path = '/updatename' element = {
+              <PrivateRoute>
+                <UpdateName></UpdateName>
               </PrivateRoute>
             }> </Route>
             <Route exact path = '*' element = {<NotFound></NotFound>}> </Route>

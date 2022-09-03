@@ -1,19 +1,21 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
 
-const ChangePassword = () => {
-    const {error, handlePasswordChange} = useAuth();
+const UpdateName = () => {
+    const {error, handleNameChange} = useAuth();
 
     return (
         <div>
-            <h3 className='pt-5'>Password Change</h3> 
+            <h3 className='pt-5'>Update User Name</h3> 
             <hr className='w-25 mx-auto'/>
+
+            <br />
 
             <form className='w-75 mx-auto'>
                 <div className="row mb-3">
-                    <label for="inputPassword3" className="col-sm-2 col-form-label">New Password</label>
+                    <label for="inputName" className="col-sm-2 col-form-label">New Password</label>
                     <div className="col-sm-10">
-                        <input onBlur={handlePasswordChange} type="password" className="form-control" id="inputPassword3" placeholder='Enter your password' required/>
+                        <input onBlur={handleNameChange} type="text" className="form-control" id="inputName" placeholder='Enter your full name' required/>
                     </div>
 
                     <br />
@@ -25,4 +27,4 @@ const ChangePassword = () => {
     );
 };
 
-export default ChangePassword;
+export default UpdateName;
