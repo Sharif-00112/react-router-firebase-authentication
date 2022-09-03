@@ -21,8 +21,8 @@ const useFirebase = () =>{
         signInWithPopup(auth, googleProvider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
+            // const credential = GoogleAuthProvider.credentialFromResult(result);
+            // const token = credential.accessToken;
             // The signed-in user info.
             setUser(result.user);
         }).catch((error) => {
@@ -40,8 +40,8 @@ const useFirebase = () =>{
       signInWithPopup(auth, gitProvider)
       .then((result) => {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-        const credential = GithubAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+        // const credential = GithubAuthProvider.credentialFromResult(result);
+        // const token = credential.accessToken;
 
         // The signed-in user info.
         setUser(result.user);
@@ -63,8 +63,8 @@ const useFirebase = () =>{
         setUser(result.user);
 
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken;
+        // const credential = FacebookAuthProvider.credentialFromResult(result);
+        // const accessToken = credential.accessToken;
       })
       .catch((error) => {
         // Handle Errors here.
@@ -98,15 +98,12 @@ const useFirebase = () =>{
       createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        // verifyEmail();
-        // setUserName();
+        // const user = userCredential.user;
+        // console.log(user);
       })
       .catch((error) => {
         setError(error.code);
         setError(error.message);
-        // ..
       });
     };
 
@@ -182,7 +179,6 @@ const useFirebase = () =>{
         displayName: name
       }).then(() => {
         // Profile updated!
-        // ...
       }).catch((error) => {
         setError(error.code);
         setError(error.message);
@@ -193,7 +189,6 @@ const useFirebase = () =>{
     sendEmailVerification(auth.currentUser)
     .then(() => {
       // Email verification sent!
-      // ...
     }).catch((error) => {
       setError(error.code);
       setError(error.message);
@@ -209,7 +204,6 @@ const useFirebase = () =>{
               setUser(user);
             } else {
               // User is signed out
-              // ...
             }
           });
     },[auth]);
@@ -220,7 +214,7 @@ const useFirebase = () =>{
             // Sign-out successful.
             setUser({});
           }).catch((error) => {
-            // An error happened.
+            setError(error);
           });
     }
 
