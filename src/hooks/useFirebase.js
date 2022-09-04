@@ -196,7 +196,7 @@ const useFirebase = () =>{
   }
 
     useEffect(()=>{
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
               // User is signed in, see docs for a list of available properties
               // https://firebase.google.com/docs/reference/js/firebase.User
@@ -206,6 +206,7 @@ const useFirebase = () =>{
               // User is signed out
             }
           });
+          return unsubscribe;
     },[auth]);
 
     const logout = () =>{
