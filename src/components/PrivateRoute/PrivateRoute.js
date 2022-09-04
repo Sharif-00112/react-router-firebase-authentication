@@ -6,7 +6,7 @@ const PrivateRoute = ({children}) => {
     // const {children, ...rest} = props;
 
     const {user} = useAuth();
-
+ 
     return (
         user.email ? children 
         : 
